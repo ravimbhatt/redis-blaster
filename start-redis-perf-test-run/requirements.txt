@@ -1,0 +1,8 @@
+# Function dependencies, for example:
+# package>=version
+functions-framework==3.*
+redis
+google-cloud-storage
+fsspec
+gcsfs
+google-cloud-secret-manager
