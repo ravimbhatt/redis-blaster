@@ -7,7 +7,7 @@ going to either a single or multiple Redis Clusters.
 Performance of applications and services are highly dependent on the data being used. One will get different set of performance numbers 
 if KBs of data is being used versus MBs of data.
 
-** There are `#990000 hardcoded paths and strings` in this code base atm - it will be removed in later cleanup cycles. **
+** There are `hardcoded paths and strings` in this code base atm - it will be removed in later cleanup cycles. **
 
 ## Design
 ---------
@@ -17,13 +17,14 @@ in the examples included, we convert this JSON data to CSV - this step is comple
 
 We control Writing to and Reading from Redis via Pub/Sub. We publish below messages for starting the write and read flows. 
 
-`Begin Write:
+```
+Begin Write:
 start-mme:run-0504-1040:10.40.208.21:10000:60:mme_csv:mme_minute_dropzone:60
-`
+```
 
 This start write message to `pubsub` is then parsed by the `start-write` cloud function as below: 
 
-`
+```
 tokens = message.split(":")
 
 if(tokens[0] != "start-mme"):
@@ -36,24 +37,25 @@ max_threads = tokens[4]
 source = tokens[5]
 destination = tokens[6]
 files_to_copy = int(tokens[7])
-`
+```
 
 where, 
-`
-redis_ip = not in use 
+```
+redis_ip = not in use
 chunk_size= size in which to divide a file into
 max_threads = number of parallel threads readind file chunks and uploading data to Redis
 source = source gcs bucket to read data files from 
 destination = destination gcs bucket to write files to at a given frequency
 files_to_copy = number of files to copy every min (hard coded for now) 
-`
+```
 
-`Begin Read: 
+```
+Begin Read: 
 start-ipfr:run-0504-0803:mme_csv:fake_ipfr:75
-`
+```
 
 This start read message to `pubsub` is then parsed by the `start-read` cloud function as below: 
-`
+```
 tokens = message.split(":")
 
 if(tokens[0] != "start-ipfr"):
@@ -63,14 +65,14 @@ run_id = tokens[1]
 source = tokens[2]
 destination = tokens[3]
 files_to_copy = int(tokens[4])
-`
+```
 
 where, 
-`
+```
 source = source gcs bucket to read data files from 
 destination = destination gcs bucket to write files to at a given frequency
 files_to_copy = number of files to copy every 2 mins (hard coded for now) 
-`
+```
 
 Important to note that the chunk_size and thread_count is currently hardcoded in the `read-mme-redis` cloud fucntion. 
 
