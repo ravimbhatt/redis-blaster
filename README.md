@@ -105,8 +105,8 @@ In this framework, several optimisation are used:
 - Redis pipeline is used to batch writes and reads together. 
 - Consistent hashing is used to distribute load on multiple Redis Clusters. 
 - Memoerystore Redis' write and read endpoint are used. 
-       - Writes are only sent to the write endpoint 
-       - Reads are sent to read endpoint which in turn takes care of balacing it across available read replicas. 
+     - Writes are only sent to the write endpoint 
+     - Reads are sent to read endpoint which in turn takes care of balacing it across available read replicas. 
  
  
 
