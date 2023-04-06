@@ -12,8 +12,7 @@ if KBs of data is being used versus MBs of data.
 ## Design
 ---------
 
-![Redis-Blaster](https://user-images.githubusercontent.com/1906415/230396930-c2b539df-58da-45d6-808c-760f488cb8ca.png)
-
+![Redis-Blaster_1](https://user-images.githubusercontent.com/1906415/230398055-33933121-0618-4613-b591-12c4b56b22bd.png)
 
 This framework uses `Dataflow` `Streaming Data Generator Template` to generate fake data for performance tests. Once we have fake data,
 in the examples included, we convert this JSON data to CSV - this step is completely optional and one could work with JSON files directly. 
