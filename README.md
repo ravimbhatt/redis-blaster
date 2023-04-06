@@ -7,7 +7,7 @@ going to either a single or multiple Redis Clusters.
 Performance of applications and services are highly dependent on the data being used. One will get different set of performance numbers 
 if KBs of data is being used versus MBs of data.
 
-** There are `hardcoded paths and strings` in this code base atm - it will be removed in later cleanup cycles. **
+**There are `hardcoded paths and strings` in this code base atm - it will be removed in later cleanup cycles.**
 
 ## Design
 ---------
